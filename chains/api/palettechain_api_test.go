@@ -20,3 +20,6 @@ func TestSendPltToPaletteChain(t *testing.T) {
 	}
 	fmt.Println(tx.Hash())
 }
+
+
+//TODO: loop to send api

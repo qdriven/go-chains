@@ -93,7 +93,7 @@ func SendPltToPalletChain(request *PltCrossChainRequest) (*types.Transaction, er
 func ApproveAndSendPltToPaletteChain(request *PltCrossChainRequest) (*types.Transaction, error) {
 
 	//url := "http://127.0.0.1:8545"
-	url := "https://ropsten.infura.io/v3/40961bdd0891462db115cde9ce6a3ad2"
+	url := "https://ropsten.infura.io/v3/40961bdd0891462db115cde9ce6a3ad2" //TODO: Move to Redis or Database
 	//privateKey := strings.ReplaceAll("0x4f17afd61d017aa256a94d4edcd3ec3241e75ef6ca5309787d2ad8ca96f1d613", "0x", "")
 	privateKey := "aec101ecdb5c86931e0ca5e635824f0d0f05240760c01ddee64be90b2a2608a9" //TODO: Make it different Address
 	key, err := crypto.HexToECDSA(privateKey)
