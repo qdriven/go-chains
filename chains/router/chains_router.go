@@ -12,7 +12,7 @@ func InitChainsApis(Router *gin.RouterGroup) {
 	{
 		ApiRouter.POST("chainMetaData", api.CreateChainMetaData) // Get All Global Parameters
 		ApiRouter.GET("chainMetaData", api.QueryChainMetaData)
-		ApiRouter.GET("approveAndSentPltToPlt", api.ApproveAndSendPltToPaletteChainTx)
-		ApiRouter.GET("sendPltToPalletChain", api.SentPltToPlt)
+		ApiRouter.POST("approveAndSentPltToPlt", api.ApproveAndSendPltToPaletteChainTx)
+		ApiRouter.POST("sendPltToPalletChain", api.SentPltToPlt)
 	}
 }

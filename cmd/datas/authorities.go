@@ -2,10 +2,9 @@ package datas
 
 import (
 	"github.com/gookit/color"
+	"go-chains/model"
 	"os"
 	"time"
-
-	"gin-vue-admin/model"
 	"gorm.io/gorm"
 )
 

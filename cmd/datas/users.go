@@ -1,14 +1,13 @@
 package datas
 
 import (
-	"gin-vue-admin/global"
 	"github.com/gookit/color"
+	uuid "github.com/satori/go.uuid"
+	"go-chains/global"
+	"go-chains/model"
+	"gorm.io/gorm"
 	"os"
 	"time"
-
-	"gin-vue-admin/model"
-	uuid "github.com/satori/go.uuid"
-	"gorm.io/gorm"
 )
 
 var Users = []model.SysUser{

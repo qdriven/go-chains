@@ -721,6 +721,39 @@ var doc = `{
                 }
             }
         },
+        "/chains/approveAndSentPltToPlt": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "cross-chain"
+                ],
+                "summary": "send plt to ETH",
+                "parameters": [
+                    {
+                        "description": "FromAddress,ToAddress,Amount",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/api.PltCrossChainRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"创建成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/chains/chainMetaData": {
             "get": {
                 "security": [
@@ -771,6 +804,39 @@ var doc = `{
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/models.ChainMetaData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"创建成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/chains/sendPltToPalletChain": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "cross-chain"
+                ],
+                "summary": "send plt to ETH",
+                "parameters": [
+                    {
+                        "description": "FromAddress,ToAddress,Amount",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/api.PltCrossChainRequest"
                         }
                     }
                 ],
@@ -2244,124 +2310,6 @@ var doc = `{
                 }
             }
         },
-        "/system/ReloadSystem": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "System"
-                ],
-                "summary": "重启系统",
-                "parameters": [
-                    {
-                        "description": "重启系统",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.System"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"重启系统成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/system/getServerInfo": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "System"
-                ],
-                "summary": "获取服务器信息",
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/system/getSystemConfig": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "System"
-                ],
-                "summary": "获取配置文件内容",
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/system/setSystemConfig": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "System"
-                ],
-                "summary": "设置配置文件内容",
-                "parameters": [
-                    {
-                        "description": "设置配置文件内容",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.System"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"设置成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "/user/changePassword": {
             "put": {
                 "security": [
@@ -2993,233 +2941,22 @@ var doc = `{
         }
     },
     "definitions": {
-        "config.Captcha": {
+        "api.PltCrossChainRequest": {
             "type": "object",
             "properties": {
-                "imgHeight": {
+                "amount": {
+                    "type": "string"
+                },
+                "approveAmount": {
+                    "type": "string"
+                },
+                "decimal": {
                     "type": "integer"
                 },
-                "imgWidth": {
-                    "type": "integer"
-                },
-                "keyLong": {
-                    "type": "integer"
-                }
-            }
-        },
-        "config.Casbin": {
-            "type": "object",
-            "properties": {
-                "modelPath": {
-                    "type": "string"
-                }
-            }
-        },
-        "config.Email": {
-            "type": "object",
-            "properties": {
-                "from": {
+                "fromAddress": {
                     "type": "string"
                 },
-                "host": {
-                    "type": "string"
-                },
-                "isSSL": {
-                    "type": "boolean"
-                },
-                "nickname": {
-                    "type": "string"
-                },
-                "port": {
-                    "type": "integer"
-                },
-                "secret": {
-                    "type": "string"
-                },
-                "to": {
-                    "type": "string"
-                }
-            }
-        },
-        "config.JWT": {
-            "type": "object",
-            "properties": {
-                "bufferTime": {
-                    "type": "integer"
-                },
-                "expiresTime": {
-                    "type": "integer"
-                },
-                "signingKey": {
-                    "type": "string"
-                }
-            }
-        },
-        "config.Local": {
-            "type": "object",
-            "properties": {
-                "path": {
-                    "type": "string"
-                }
-            }
-        },
-        "config.Mysql": {
-            "type": "object",
-            "properties": {
-                "config": {
-                    "type": "string"
-                },
-                "dbname": {
-                    "type": "string"
-                },
-                "logMode": {
-                    "type": "boolean"
-                },
-                "logZap": {
-                    "type": "string"
-                },
-                "maxIdleConns": {
-                    "type": "integer"
-                },
-                "maxOpenConns": {
-                    "type": "integer"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "path": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "config.Qiniu": {
-            "type": "object",
-            "properties": {
-                "accessKey": {
-                    "type": "string"
-                },
-                "bucket": {
-                    "type": "string"
-                },
-                "imgPath": {
-                    "type": "string"
-                },
-                "secretKey": {
-                    "type": "string"
-                },
-                "useCdnDomains": {
-                    "type": "boolean"
-                },
-                "useHttps": {
-                    "type": "boolean"
-                },
-                "zone": {
-                    "type": "string"
-                }
-            }
-        },
-        "config.Redis": {
-            "type": "object",
-            "properties": {
-                "addr": {
-                    "type": "string"
-                },
-                "db": {
-                    "type": "integer"
-                },
-                "password": {
-                    "type": "string"
-                }
-            }
-        },
-        "config.Server": {
-            "type": "object",
-            "properties": {
-                "captcha": {
-                    "$ref": "#/definitions/config.Captcha"
-                },
-                "casbin": {
-                    "$ref": "#/definitions/config.Casbin"
-                },
-                "email": {
-                    "$ref": "#/definitions/config.Email"
-                },
-                "jwt": {
-                    "$ref": "#/definitions/config.JWT"
-                },
-                "local": {
-                    "description": "oss",
-                    "$ref": "#/definitions/config.Local"
-                },
-                "mysql": {
-                    "description": "gorm",
-                    "$ref": "#/definitions/config.Mysql"
-                },
-                "qiniu": {
-                    "$ref": "#/definitions/config.Qiniu"
-                },
-                "redis": {
-                    "$ref": "#/definitions/config.Redis"
-                },
-                "system": {
-                    "$ref": "#/definitions/config.System"
-                },
-                "zap": {
-                    "$ref": "#/definitions/config.Zap"
-                }
-            }
-        },
-        "config.System": {
-            "type": "object",
-            "properties": {
-                "addr": {
-                    "type": "integer"
-                },
-                "dbType": {
-                    "type": "string"
-                },
-                "env": {
-                    "type": "string"
-                },
-                "ossType": {
-                    "type": "string"
-                },
-                "useMultipoint": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "config.Zap": {
-            "type": "object",
-            "properties": {
-                "director": {
-                    "type": "string"
-                },
-                "encodeLevel": {
-                    "type": "string"
-                },
-                "format": {
-                    "type": "string"
-                },
-                "level": {
-                    "type": "string"
-                },
-                "linkName": {
-                    "type": "string"
-                },
-                "logInConsole": {
-                    "type": "boolean"
-                },
-                "prefix": {
-                    "type": "string"
-                },
-                "showLine": {
-                    "type": "boolean"
-                },
-                "stacktraceKey": {
+                "toAddress": {
                     "type": "string"
                 }
             }
@@ -3638,14 +3375,6 @@ var doc = `{
                 },
                 "uuid": {
                     "type": "string"
-                }
-            }
-        },
-        "model.System": {
-            "type": "object",
-            "properties": {
-                "config": {
-                    "$ref": "#/definitions/config.Server"
                 }
             }
         },

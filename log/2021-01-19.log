@@ -1,0 +1,30 @@
+[go-chains]2021/01/19 - 15:29:40.792	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/gorm.go:62	register table success
+[go-chains]2021/01/19 - 15:29:40.794	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:21	use middleware logger
+[go-chains]2021/01/19 - 15:29:40.794	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:24	use middleware cors
+[go-chains]2021/01/19 - 15:29:40.794	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:26	register swagger handler
+[go-chains]2021/01/19 - 15:29:40.795	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:57	router register success
+[go-chains]2021/01/19 - 15:29:40.795	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/core/server.go:29	server run success on 	{"address": ":8889"}
+[go-chains]2021/01/19 - 15:31:58.274	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/gorm.go:62	register table success
+[go-chains]2021/01/19 - 15:31:58.277	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:21	use middleware logger
+[go-chains]2021/01/19 - 15:31:58.277	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:24	use middleware cors
+[go-chains]2021/01/19 - 15:31:58.278	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:26	register swagger handler
+[go-chains]2021/01/19 - 15:31:58.279	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:57	router register success
+[go-chains]2021/01/19 - 15:31:58.279	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/core/server.go:29	server run success on 	{"address": ":8889"}
+[go-chains]2021/01/19 - 15:34:57.863	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/gorm.go:62	register table success
+[go-chains]2021/01/19 - 15:34:57.865	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:21	use middleware logger
+[go-chains]2021/01/19 - 15:34:57.865	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:24	use middleware cors
+[go-chains]2021/01/19 - 15:34:57.865	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:26	register swagger handler
+[go-chains]2021/01/19 - 15:34:57.866	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:57	router register success
+[go-chains]2021/01/19 - 15:34:57.866	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/core/server.go:29	server run success on 	{"address": ":8889"}
+[go-chains]2021/01/19 - 15:36:04.218	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/gorm.go:62	register table success
+[go-chains]2021/01/19 - 15:36:04.223	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:21	use middleware logger
+[go-chains]2021/01/19 - 15:36:04.223	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:24	use middleware cors
+[go-chains]2021/01/19 - 15:36:04.223	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:26	register swagger handler
+[go-chains]2021/01/19 - 15:36:04.225	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:57	router register success
+[go-chains]2021/01/19 - 15:36:04.225	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/core/server.go:29	server run success on 	{"address": ":8889"}
+[go-chains]2021/01/19 - 15:42:31.602	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/gorm.go:62	register table success
+[go-chains]2021/01/19 - 15:42:31.604	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:21	use middleware logger
+[go-chains]2021/01/19 - 15:42:31.604	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:24	use middleware cors
+[go-chains]2021/01/19 - 15:42:31.605	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:26	register swagger handler
+[go-chains]2021/01/19 - 15:42:31.606	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/initialize/router.go:57	router register success
+[go-chains]2021/01/19 - 15:42:31.607	[34minfo[0m	/Users/Patrick/go/src/github.com/palettechain/gin-vue-admin/server/evm-server/core/server.go:29	server run success on 	{"address": ":8889"}

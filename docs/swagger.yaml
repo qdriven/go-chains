@@ -1,154 +1,16 @@
 basePath: /
 definitions:
-  config.Captcha:
+  api.PltCrossChainRequest:
     properties:
-      imgHeight:
+      amount:
+        type: string
+      approveAmount:
+        type: string
+      decimal:
         type: integer
-      imgWidth:
-        type: integer
-      keyLong:
-        type: integer
-    type: object
-  config.Casbin:
-    properties:
-      modelPath:
+      fromAddress:
         type: string
-    type: object
-  config.Email:
-    properties:
-      from:
-        type: string
-      host:
-        type: string
-      isSSL:
-        type: boolean
-      nickname:
-        type: string
-      port:
-        type: integer
-      secret:
-        type: string
-      to:
-        type: string
-    type: object
-  config.JWT:
-    properties:
-      bufferTime:
-        type: integer
-      expiresTime:
-        type: integer
-      signingKey:
-        type: string
-    type: object
-  config.Local:
-    properties:
-      path:
-        type: string
-    type: object
-  config.Mysql:
-    properties:
-      config:
-        type: string
-      dbname:
-        type: string
-      logMode:
-        type: boolean
-      logZap:
-        type: string
-      maxIdleConns:
-        type: integer
-      maxOpenConns:
-        type: integer
-      password:
-        type: string
-      path:
-        type: string
-      username:
-        type: string
-    type: object
-  config.Qiniu:
-    properties:
-      accessKey:
-        type: string
-      bucket:
-        type: string
-      imgPath:
-        type: string
-      secretKey:
-        type: string
-      useCdnDomains:
-        type: boolean
-      useHttps:
-        type: boolean
-      zone:
-        type: string
-    type: object
-  config.Redis:
-    properties:
-      addr:
-        type: string
-      db:
-        type: integer
-      password:
-        type: string
-    type: object
-  config.Server:
-    properties:
-      captcha:
-        $ref: '#/definitions/config.Captcha'
-      casbin:
-        $ref: '#/definitions/config.Casbin'
-      email:
-        $ref: '#/definitions/config.Email'
-      jwt:
-        $ref: '#/definitions/config.JWT'
-      local:
-        $ref: '#/definitions/config.Local'
-        description: oss
-      mysql:
-        $ref: '#/definitions/config.Mysql'
-        description: gorm
-      qiniu:
-        $ref: '#/definitions/config.Qiniu'
-      redis:
-        $ref: '#/definitions/config.Redis'
-      system:
-        $ref: '#/definitions/config.System'
-      zap:
-        $ref: '#/definitions/config.Zap'
-    type: object
-  config.System:
-    properties:
-      addr:
-        type: integer
-      dbType:
-        type: string
-      env:
-        type: string
-      ossType:
-        type: string
-      useMultipoint:
-        type: boolean
-    type: object
-  config.Zap:
-    properties:
-      director:
-        type: string
-      encodeLevel:
-        type: string
-      format:
-        type: string
-      level:
-        type: string
-      linkName:
-        type: string
-      logInConsole:
-        type: boolean
-      prefix:
-        type: string
-      showLine:
-        type: boolean
-      stacktraceKey:
+      toAddress:
         type: string
     type: object
   model.AutoCodeStruct:
@@ -424,11 +286,6 @@ definitions:
         type: string
       uuid:
         type: string
-    type: object
-  model.System:
-    properties:
-      config:
-        $ref: '#/definitions/config.Server'
     type: object
   model.WorkflowEdge:
     properties:
@@ -1262,6 +1119,27 @@ paths:
       summary: 获取权限列表
       tags:
       - Casbin
+  /chains/approveAndSentPltToPlt:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: FromAddress,ToAddress,Amount
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/api.PltCrossChainRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      summary: send plt to ETH
+      tags:
+      - cross-chain
   /chains/chainMetaData:
     get:
       consumes:
@@ -1300,6 +1178,27 @@ paths:
       summary: 创建Chain的基础信息
       tags:
       - ChainMetaDataApi
+  /chains/sendPltToPalletChain:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: FromAddress,ToAddress,Amount
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/api.PltCrossChainRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      summary: send plt to ETH
+      tags:
+      - cross-chain
   /customer/customer:
     delete:
       consumes:
@@ -2184,76 +2083,6 @@ paths:
       summary: 分页获取SysOperationRecord列表
       tags:
       - SysOperationRecord
-  /system/ReloadSystem:
-    post:
-      parameters:
-      - description: 重启系统
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/model.System'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: '{"success":true,"data":{},"msg":"重启系统成功"}'
-          schema:
-            type: string
-      security:
-      - ApiKeyAuth: []
-      summary: 重启系统
-      tags:
-      - System
-  /system/getServerInfo:
-    post:
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: '{"success":true,"data":{},"msg":"获取成功"}'
-          schema:
-            type: string
-      security:
-      - ApiKeyAuth: []
-      summary: 获取服务器信息
-      tags:
-      - System
-  /system/getSystemConfig:
-    post:
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: '{"success":true,"data":{},"msg":"获取成功"}'
-          schema:
-            type: string
-      security:
-      - ApiKeyAuth: []
-      summary: 获取配置文件内容
-      tags:
-      - System
-  /system/setSystemConfig:
-    post:
-      parameters:
-      - description: 设置配置文件内容
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/model.System'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: '{"success":true,"data":{},"msg":"设置成功"}'
-          schema:
-            type: string
-      security:
-      - ApiKeyAuth: []
-      summary: 设置配置文件内容
-      tags:
-      - System
   /user/changePassword:
     put:
       parameters:

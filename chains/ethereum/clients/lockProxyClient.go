@@ -30,7 +30,7 @@ func (c *EvmClient) SendApproveAndLockTx(request *CrossChainRequestContext) (*ty
 }
 
 func (c *EvmClient) SendLockTx(request *CrossChainRequestContext) (*types.Transaction, error) {
-	return c.Lock(request.LockProxyAddress,
+	return c.LockNoWait(request.LockProxyAddress,
 		request.FromAddressHex,
 		request.Amount,
 		request.ToAddressHex,
@@ -66,6 +66,25 @@ func (c *EvmClient) Lock(lockProxyAddress, fromAssetHex, amount, toAddressHex st
 		log.Error("send lock transaction failed,", err)
 	}
 	c.WaitTransactionConfirm(lockTx.Hash())
+	log.Info("transaction hash:", lockTx.Hash().String())
+	return lockTx, nil
+}
+
+
+func (c *EvmClient) LockNoWait(lockProxyAddress, fromAssetHex, amount, toAddressHex string, decimal, chainId uint64) (*types.Transaction, error) {
+	contractAddress := common.HexToAddress(lockProxyAddress)
+	lockProxy, err := lock_proxy_abi.NewLockProxy(contractAddress, c.EClient)
+	if err != nil {
+		log.Info(err)
+	}
+	//跨链
+	fromAssetHash := common.HexToAddress(fromAssetHex)
+	auth := c.MakeAuth()
+	toAddress := common.HexToAddress(toAddressHex) //Test Accounts
+	lockTx, err := lockProxy.Lock(auth, fromAssetHash, chainId, toAddress.Bytes(), utils.ToIntByPrecise(amount, decimal))
+	if err != nil {
+		log.Error("send lock transaction failed,", err)
+	}
 	log.Info("transaction hash:", lockTx.Hash().String())
 	return lockTx, nil
 }

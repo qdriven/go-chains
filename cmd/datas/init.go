@@ -1,9 +1,9 @@
 package datas
 
 import (
-	"gin-vue-admin/model"
 	gormadapter "github.com/casbin/gorm-adapter/v3"
 	"github.com/gookit/color"
+	"go-chains/model"
 	"gorm.io/gorm"
 	"os"
 )

@@ -16,14 +16,14 @@ limitations under the License.
 package gva
 
 import (
-	"gin-vue-admin/cmd/datas"
-	"gin-vue-admin/core"
-	"gin-vue-admin/initialize"
 
 	"github.com/gookit/color"
+	"go-chains/cmd/datas"
+	"go-chains/core"
+	"go-chains/global"
+	"go-chains/initialize"
 
-	_ "gin-vue-admin/core"
-	"gin-vue-admin/global"
+	_ "go-chains/core"
 
 	"github.com/spf13/cobra"
 )

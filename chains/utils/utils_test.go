@@ -8,9 +8,9 @@ package utils
 
 import (
 	"fmt"
-	"github.com/ontio/ontology/common/log"
 	"github.com/shopspring/decimal"
 	"github.com/stretchr/testify/assert"
+	"go-chains/chains/log"
 	"math/big"
 	"strconv"
 	"testing"

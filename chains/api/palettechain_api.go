@@ -59,6 +59,7 @@ func SentPltToPlt(c *gin.Context) {
 	request := &PltCrossChainRequest{}
 	_ = c.ShouldBind(request)
 	tx, err := SendPltToPalletChain(request)
+	log.Info("transaction hash is ",tx.Hash().String())
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 	}

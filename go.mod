@@ -19,6 +19,7 @@ require (
 	github.com/go-openapi/spec v0.19.7 // indirect
 	github.com/go-openapi/swag v0.19.8 // indirect
 	github.com/go-redis/redis v6.15.9+incompatible
+	github.com/go-resty/resty/v2 v2.4.0
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gookit/color v1.3.6
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
@@ -28,12 +29,10 @@ require (
 	github.com/mojocn/base64Captcha v1.3.1
 	github.com/onsi/ginkgo v1.14.2 // indirect
 	github.com/onsi/gomega v1.10.4 // indirect
-	github.com/ontio/ontology v1.12.0
 	github.com/pkg/errors v0.9.1
 	github.com/qiniu/api.v7/v7 v7.8.1
 	github.com/satori/go.uuid v1.2.0
-	github.com/shirou/gopsutil v2.20.5+incompatible
-	//github.com/shirou/gopsutil v2.20.8+incompatible
+	github.com/shirou/gopsutil v2.20.8+incompatible
 	github.com/shopspring/decimal v0.0.0-20200227202807-02e2044944cc
 	github.com/spf13/cobra v1.1.1
 	github.com/spf13/viper v1.7.1
@@ -43,7 +42,7 @@ require (
 	github.com/tyler-smith/go-bip39 v1.1.0
 	github.com/unrolled/secure v1.0.8
 	go.uber.org/zap v1.16.0
-	golang.org/x/net v0.0.0-20201202161906-c7110b5ffcbb
+	golang.org/x/net v0.0.0-20201224014010-6772e930b67b
 	gorm.io/driver/mysql v1.0.1
 	gorm.io/gorm v1.20.11
 )
