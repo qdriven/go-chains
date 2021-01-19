@@ -1,6 +1,7 @@
 package main
 
 import (
+	"go-chains/chains/jobs"
 	"go-chains/core"
 	"go-chains/global"
 	"go-chains/initialize"
@@ -21,6 +22,6 @@ func main() {
 	// 程序结束前关闭数据库链接
 	db, _ := global.GVA_DB.DB()
 	defer db.Close()
-
+	go jobs.InitJob()
 	core.RunWindowsServer()
 }

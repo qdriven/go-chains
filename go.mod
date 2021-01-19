@@ -31,8 +31,9 @@ require (
 	github.com/onsi/gomega v1.10.4 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/qiniu/api.v7/v7 v7.8.1
+	github.com/robfig/cron v1.2.0
 	github.com/satori/go.uuid v1.2.0
-	github.com/shirou/gopsutil v2.20.8+incompatible
+	github.com/shirou/gopsutil v2.20.8+incompatible // indirect
 	github.com/shopspring/decimal v0.0.0-20200227202807-02e2044944cc
 	github.com/spf13/cobra v1.1.1
 	github.com/spf13/viper v1.7.1
