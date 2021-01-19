@@ -5,7 +5,9 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"go-chains/chains/evm/binding/poly/lock_proxy_abi"
 	"go-chains/chains/log"
+	"go-chains/chains/models"
 	"go-chains/chains/utils"
+	"go-chains/global"
 )
 
 type CrossChainRequestContext struct {
@@ -70,7 +72,6 @@ func (c *EvmClient) Lock(lockProxyAddress, fromAssetHex, amount, toAddressHex st
 	return lockTx, nil
 }
 
-
 func (c *EvmClient) LockNoWait(lockProxyAddress, fromAssetHex, amount, toAddressHex string, decimal, chainId uint64) (*types.Transaction, error) {
 	contractAddress := common.HexToAddress(lockProxyAddress)
 	lockProxy, err := lock_proxy_abi.NewLockProxy(contractAddress, c.EClient)
@@ -86,5 +87,17 @@ func (c *EvmClient) LockNoWait(lockProxyAddress, fromAssetHex, amount, toAddress
 		log.Error("send lock transaction failed,", err)
 	}
 	log.Info("transaction hash:", lockTx.Hash().String())
+
+	crossChainModel := &models.CrossChainTx{
+		TxHash:      lockTx.Hash().String(),
+		FromAddress: c.Address().String(),
+		ToAddress:   toAddress.String(),
+		Amount:      amount,
+		FromChain:   "ETH",
+		ToChain:     "PLT",
+	}
+	global.GVA_DB.Save(crossChainModel)
 	return lockTx, nil
 }
+
+//TODO: search for tx status and update status

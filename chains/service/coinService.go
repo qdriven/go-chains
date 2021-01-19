@@ -7,3 +7,6 @@ func GetEthTestCoin(address string) (*http.Response, error) {
 	resp, err := http.Get(url + address)
 	return resp, err
 }
+
+
+//1,999,999,994.998199999999899999

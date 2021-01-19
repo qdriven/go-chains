@@ -36,7 +36,7 @@ func (job *PaletteCrossChainTestJob) SendPltToEthJob() {
 		log.Error("send plt to ETH error")
 	}
 	if resp != nil {
-		log.Info("plt send eth to ETH respose:", resp.String())
+		log.Info("plt send eth to ETH response:", resp.String())
 	} else {
 		log.Error("Send PLT TO ETH Error")
 	}
@@ -66,6 +66,6 @@ func InitJob() {
 		time.Sleep(5 * time.Second)
 		job.SendPltToEthJob()
 		job.SendEthToPLTJob()
-		time.Sleep(30 * time.Second)
+		time.Sleep(300 * time.Second)
 	}
 }
