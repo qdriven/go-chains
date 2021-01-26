@@ -1119,6 +1119,75 @@ paths:
       summary: 获取权限列表
       tags:
       - Casbin
+  /chains/CrossChainAssetMapping:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: "\tChainName,ChainI,ChainType,RPCUrl string"
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.ChainMetaData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Chain的基础信息
+      tags:
+      - ChainMetaDataApi
+  /chains/CrossChainLockProxy:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: "\tChainName,ChainI,ChainType,RPCUrl string"
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.ChainMetaData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Chain的基础信息
+      tags:
+      - ChainMetaDataApi
+  /chains/CrossChainProxyHashMap:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: "\tChainName,ChainI,ChainType,RPCUrl string"
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.ChainMetaData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Chain的基础信息
+      tags:
+      - ChainMetaDataApi
   /chains/approveAndSentPltToPlt:
     post:
       consumes:
@@ -1176,6 +1245,92 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: 创建Chain的基础信息
+      tags:
+      - ChainMetaDataApi
+  /chains/coinMetaData:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取Chain MetaData信息
+      tags:
+      - ChainMetaDataApi
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: "\tChainName,ChainI,ChainType,RPCUrl string"
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.ChainMetaData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Chain的基础信息
+      tags:
+      - ChainMetaDataApi
+  /chains/queryCrossChainAssetMapping:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取Chain MetaData信息
+      tags:
+      - ChainMetaDataApi
+  /chains/queryCrossChainLockProxy:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取Chain MetaData信息
+      tags:
+      - ChainMetaDataApi
+  /chains/queryCrossChainProxyHashMap:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取Chain MetaData信息
       tags:
       - ChainMetaDataApi
   /chains/sendPltToPalletChain:
