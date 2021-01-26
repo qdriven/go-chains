@@ -34,6 +34,7 @@ type EvmClient struct {
 	GasPrice     *big.Int
 	GasLimit     uint64
 	BlockPeriod  time.Duration
+	backend      bind.ContractBackend
 }
 
 /**
@@ -53,6 +54,7 @@ func NewEvmClient(url string, key *ecdsa.PrivateKey) *EvmClient {
 		gasPrice = big.NewInt(50000) //DEFAULT GasLimit
 	}
 	evmClient.GasPrice = gasPrice.Mul(gasPrice, big.NewInt(10))
+	evmClient.backend = evmClient.EClient
 	return evmClient
 }
 
@@ -110,7 +112,7 @@ func (c *EvmClient) GetBlockNumber() uint64 {
 		&raw,
 		"eth_blockNumber",
 	); err != nil {
-		fmt.Errorf("failed to get nonce: [%v]", err)
+		_ = fmt.Errorf("failed to get nonce: [%v]", err)
 		return uint64(0)
 	}
 

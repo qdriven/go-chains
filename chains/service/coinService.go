@@ -10,3 +10,5 @@ func GetEthTestCoin(address string) (*http.Response, error) {
 
 
 //1,999,999,994.998199999999899999
+
+//TODO: Transaction Balances

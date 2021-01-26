@@ -9,6 +9,7 @@ import (
 	"go-chains/chains/evm/binding/poly/erc20_abi"
 	"go-chains/chains/evm/binding/poly/oep4_abi"
 	"go-chains/chains/log"
+	"go-chains/chains/utils"
 	"math/big"
 )
 
@@ -77,64 +78,84 @@ func (c *EvmClient) DeployOEP4(lockProxy string) (common.Address, *oep4_abi.OEP4
 	return contractAddress, contract, nil
 }
 
-//func (c *EvmClient) GetAccInfo() (string, error) {
-//	h := c.GetBlockNumber()
-//	val, err := c.EClient.BalanceAt(context.Background(), c.Address(), big.NewInt(int64(h)))
-//	if err != nil {
-//		return "", err
-//	}
-//	ethInfo := fmt.Sprintf("eth: %d", val.Uint64())
-//
-//	//ontx, err := ontx.NewONTX(common.HexToAddress(ethInvoker.TConfiguration.EthOntx), ethInvoker.ETHUtil.ethclient)
-//	//if err != nil {
-//	//	return "", err
-//	//}
-//	//val, err = ontx.BalanceOf(nil, ethInvoker.EthTestSigner.Address)
-//	//if err != nil {
-//	//	return "", err
-//	//}
-//	//ontInfo := fmt.Sprintf("ontx: %d", val.Uint64())
-//	//
-//	//ongx, err := ongx_api.NewONGX(ethComm.HexToAddress(ethInvoker.TConfiguration.EthOngx), ethInvoker.ETHUtil.ethclient)
-//	//if err != nil {
-//	//	return "", err
-//	//}
-//	//val, err = ongx.BalanceOf(nil, ethInvoker.EthTestSigner.Address)
-//	//if err != nil {
-//	//	return "", err
-//	//}
-//	//ongInfo := fmt.Sprintf("ongx: %d", val.Uint64())
-//	//
-//	//oep4x, err := oep4_api.NewOEP4Template(ethComm.HexToAddress(ethInvoker.TConfiguration.EthOep4), ethInvoker.ETHUtil.ethclient)
-//	//if err != nil {
-//	//	return "", err
-//	//}
-//	//val, err = oep4x.BalanceOf(nil, ethInvoker.EthTestSigner.Address)
-//	//if err != nil {
-//	//	return "", err
-//	//}
-//	//oep4Info := fmt.Sprintf("oep4x: %d", val.Uint64())
-//	//
-//	//erc20, err := erc20_api.NewERC20(ethComm.HexToAddress(ethInvoker.TConfiguration.EthErc20), ethInvoker.ETHUtil.ethclient)
-//	//if err != nil {
-//	//	return "", err
-//	//}
-//	//val, err = erc20.BalanceOf(nil, ethInvoker.EthTestSigner.Address)
-//	//if err != nil {
-//	//	return "", err
-//	//}
-//	//erc20Info := fmt.Sprintf("erc20: %d", val.Uint64())
-//	//
-//	//btcx, err := btcx.NewBTCX(ethComm.HexToAddress(ethInvoker.TConfiguration.BtceContractAddress), ethInvoker.ETHUtil.ethclient)
-//	//if err != nil {
-//	//	return "", err
-//	//}
-//	//val, err = btcx.BalanceOf(nil, c.Address)
-//	//if err != nil {
-//	//	return "", err
-//	//}
-//	//btcxInfo := fmt.Sprintf("btcx: %d", val.Uint64())
-//	//
-//	//return fmt.Sprintf("ETHEREUM: acc: %s, asset: [ %s, %s, %s, %s, %s, %s ]",
-//	//	c.Address.String(), ethInfo, ontInfo, ongInfo, oep4Info, erc20Info, btcxInfo), nil
-//}
+func (c *EvmClient) PauseCCMP(ccmpAddr common.Address) (common.Hash, error) {
+	ccmp, err := eccmp_abi.NewEthCrossChainManagerProxy(ccmpAddr, c.backend)
+	if err != nil {
+		return utils.EmptyHash, fmt.Errorf("new EthCrossChainManagerProxy err: %s", err)
+	}
+
+	auth := c.MakeAuth()
+	tx, err := ccmp.PauseEthCrossChainManager(auth)
+	if err != nil {
+		return utils.EmptyHash, fmt.Errorf("call ccmp pause err: %s", err)
+	}
+
+	c.WaitTransactionConfirm(tx.Hash())
+	return tx.Hash(), nil
+}
+
+func (c *EvmClient) UnPauseCCMP(ccmpAddr common.Address) (common.Hash, error) {
+	ccmp, err := eccmp_abi.NewEthCrossChainManagerProxy(ccmpAddr, c.backend)
+	if err != nil {
+		return utils.EmptyHash, fmt.Errorf("new EthCrossChainManagerProxy err: %s", err)
+	}
+
+	auth := c.MakeAuth()
+	tx, err := ccmp.UnpauseEthCrossChainManager(auth)
+	if err != nil {
+		return utils.EmptyHash, fmt.Errorf("call ccmp unpause err: %s", err)
+	}
+
+	c.WaitTransactionConfirm(tx.Hash())
+	return tx.Hash(), nil
+}
+
+func (c *EvmClient) UpgradeECCM(newEccmAddr, ccmpAddr common.Address) (common.Hash, error) {
+	ccmp, err := eccmp_abi.NewEthCrossChainManagerProxy(ccmpAddr, c.backend)
+	if err != nil {
+		return utils.EmptyHash, fmt.Errorf("new EthCrossChainManagerProxy err: %s", err)
+	}
+
+	auth := c.MakeAuth()
+	tx, err := ccmp.UpgradeEthCrossChainManager(auth, newEccmAddr)
+	if err != nil {
+		return utils.EmptyHash, fmt.Errorf("call upgradeEthCrossChainManager err: %s", err)
+	}
+
+	c.WaitTransactionConfirm(tx.Hash())
+	return tx.Hash(), nil
+}
+
+func (c *EvmClient) ECCDTransferOwnerShip(eccdAddr, eccmAddr common.Address) (common.Hash, error) {
+	eccd, err := eccd_abi.NewEthCrossChainData(eccdAddr, c.backend)
+	if err != nil {
+		return utils.EmptyHash, fmt.Errorf("new EthCrossChainData err: %s", err)
+	}
+
+	auth := c.MakeAuth()
+	tx, err := eccd.TransferOwnership(auth, eccmAddr)
+	if err != nil {
+		return utils.EmptyHash, fmt.Errorf("call transferOwnerShip err: %s", err)
+	}
+	c.WaitTransactionConfirm(tx.Hash())
+	return tx.Hash(), nil
+}
+
+func (c *EvmClient) ECCMTransferOwnerShip(eccmAddr, ccmpAddr common.Address) (common.Hash, error) {
+	eccm, err := eccm_abi.NewEthCrossChainManager(eccmAddr, c.backend)
+	if err != nil {
+		return utils.EmptyHash, fmt.Errorf("new EthCrossChainManager err: %s", err)
+	}
+
+	auth := c.MakeAuth()
+	tx, err := eccm.TransferOwnership(auth, ccmpAddr)
+	if err != nil {
+		return utils.EmptyHash, fmt.Errorf("call transferOwnerShip err: %s", err)
+	}
+	c.WaitTransactionConfirm(tx.Hash())
+	return tx.Hash(), nil
+}
+
+
+
+

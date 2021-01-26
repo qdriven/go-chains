@@ -101,3 +101,7 @@ func (c *EvmClient) LockNoWait(lockProxyAddress, fromAssetHex, amount, toAddress
 }
 
 //TODO: search for tx status and update status
+
+//1. Getting Asset Mapping
+//2. Getting Get Proxy binding
+//3. Asset Database

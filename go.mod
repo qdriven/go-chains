@@ -30,8 +30,8 @@ require (
 	github.com/onsi/ginkgo v1.14.2 // indirect
 	github.com/onsi/gomega v1.10.4 // indirect
 	github.com/pkg/errors v0.9.1
+	github.com/polynetwork/poly v1.3.1-0.20210115104304-aa006115a87d
 	github.com/qiniu/api.v7/v7 v7.8.1
-	github.com/robfig/cron v1.2.0
 	github.com/satori/go.uuid v1.2.0
 	github.com/shirou/gopsutil v2.20.8+incompatible // indirect
 	github.com/shopspring/decimal v0.0.0-20200227202807-02e2044944cc
@@ -46,4 +46,5 @@ require (
 	golang.org/x/net v0.0.0-20201224014010-6772e930b67b
 	gorm.io/driver/mysql v1.0.1
 	gorm.io/gorm v1.20.11
+
 )

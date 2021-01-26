@@ -64,6 +64,9 @@ func TestReadExcelPlan(t *testing.T) {
 	fmt.Println(result)
 }
 
+func TestStringToInt(t *testing.T) {
+	fmt.Println(ToIntByPrecise("10",10))
+}
 
 func TestDecimal(t *testing.T) {
 	transferDecimal := decimal.NewFromInt(1000000000000000000)
