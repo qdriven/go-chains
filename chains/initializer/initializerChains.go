@@ -37,6 +37,11 @@ func MigrateChainsTables(db *gorm.DB) {
 	err :=db.AutoMigrate(
 		models.ChainMetaData{},
 		models.CrossChainTx{},
+		models.CrossChainAssetMapping{},
+		models.CrossChainLockProxy{},
+		models.CrossChainProxyHashMap{},
+		models.CoinMetaData{},
+		models.EvmTransactionRecord{},
 	)
 	if err != nil {
 		global.GVA_LOG.Error("register blockchain table failed", zap.Any("err", err))

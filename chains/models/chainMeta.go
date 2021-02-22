@@ -8,6 +8,7 @@ type ChainMetaData struct {
 	ChainId   string
 	ChainType string //mainnet/testnet
 	RPCUrl    string
+	RouterId  string
 }
 
 type EvmTransactionRecord struct {

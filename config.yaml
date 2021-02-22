@@ -46,13 +46,14 @@ system:
 
 # captcha configuration
 captcha:
-  key-long: 6
+  key-long: 4
   img-width: 240
   img-height: 80
 
 # mysql connect configuration
 mysql:
-  path: '106.75.232.131:3306'
+  #  path: '106.75.232.131:3306'
+  path: 'localhost:3306'
   config: 'charset=utf8mb4&parseTime=True&loc=Local'
   db-name: 'chain_explore'
   username: 'root'
@@ -67,7 +68,7 @@ local:
   path: 'uploads/file'
   testConfig: '/Users/Patrick/go/src/github.com/palettechain/onRobot/service/config.json'
 
-# qiniu configuration (请自行七牛申请对应的 公钥 私钥 bucket �?域名地址)
+## qiniu configuration (请自行七牛申请对应的 公钥 私钥 bucket �?域名地址)
 qiniu:
   zone: 'ZoneHuadong'
   bucket: 'qm-plus-img'
